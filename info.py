@@ -45,12 +45,16 @@ from os import environ
 # Pattern to identify numeric Telegram IDs
 id_pattern = re.compile(r"^-?\d+$")
 
-# File store channel: list of int IDs
-FILE_STORE_CHANNEL = [int(ch) for ch in environ.get('FILE_STORE_CHANNEL', '-1002575745911').split()]
+import re
 
-# Delete channels: list of int or str (if using usernames like @channel)
+id_pattern = re.compile(r"^-?\d+$")
+
+# For File Store Channel (must be a **single** int ID)
+FILE_STORE_CHANNEL = int(environ.get('FILE_STORE_CHANNEL', '-1002575745911'))
+
+# For Delete Channels (can be a mix of usernames and IDs)
 DELETE_CHANNELS = [
-    int(dch) if id_pattern.search(dch) else dch
+    int(dch) if id_pattern.match(dch) else dch
     for dch in environ.get('DELETE_CHANNELS', '-1002574075732').split()
 ]
 
