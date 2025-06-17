@@ -39,12 +39,21 @@ INDEX_REQ_CHANNEL = int(environ.get('INDEX_REQ_CHANNEL', LOG_CHANNEL))
 support_chat_id = environ.get('SUPPORT_CHAT_ID', '')
 SUPPORT_CHAT_ID = int(support_chat_id) if support_chat_id and id_pattern.search(support_chat_id) else None
 
+import re
+from os import environ
+
+# Pattern to identify numeric Telegram IDs
+id_pattern = re.compile(r"^-?\d+$")
+
+# File store channel: list of int IDs
 FILE_STORE_CHANNEL = [int(ch) for ch in environ.get('FILE_STORE_CHANNEL', '-1002575745911').split()]
 
+# Delete channels: list of int or str (if using usernames like @channel)
 DELETE_CHANNELS = [
     int(dch) if id_pattern.search(dch) else dch
-    for dch in environ.get('DELETE_CHANNELS', '-1002575745911').split()
+    for dch in environ.get('DELETE_CHANNELS', '-1002574075732').split()
 ]
+
 
 # MongoDB Info
 DATABASE_URI = environ.get('DATABASE_URI', "mongodb+srv://...")
@@ -117,7 +126,7 @@ IMDB_TEMPLATE = environ.get("IMDB_TEMPLATE", script.IMDB_TEMPLATE_TXT)
 MAX_LIST_ELM = environ.get("MAX_LIST_ELM", None)
 
 # Filter Settings
-LANGUAGES = ["malayalam", "mal", "tamil", "tam", "english", "eng", "hindi", "hin", "telugu", "tel", "kannada", "kan"]
+LANGUAGES = ["malayalam", "mal", "tamil", "tulu", "english", "eng", "hindi", "hin", "telugu", "tel", "kannada", "kan"]
 SEASONS = [f"season {i}" for i in range(1, 11)]
 EPISODES = [f"E{i:02d}" for i in range(1, 41)]
 QUALITIES = ["360p", "480p", "720p", "1080p", "1440p", "2160p"]
