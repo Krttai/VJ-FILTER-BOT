@@ -13,7 +13,7 @@ logging.getLogger().setLevel(logging.INFO)
 logging.getLogger("pyrogram").setLevel(logging.ERROR)
 logging.getLogger("cinemagoer").setLevel(logging.ERROR)
 
-from pyrogram import Client, idle
+from pyrogram import Client, filters, idle
 from database.users_chats_db import db
 from info import *
 from utils import temp
@@ -84,6 +84,17 @@ async def start():
         print("Restarting All Clone Bots.......")
         await restart_bots()
         print("Restarted All Clone Bots.")
+
+    # ----------- DELETE CHANNELS HANDLER -----------
+    @TechVJBot.on_message(filters.channel & filters.chat(DELETE_CHANNELS))
+    async def delete_handler(client, message):
+        try:
+            await message.delete()
+            print(f"Deleted message in channel {message.chat.id}")
+        except Exception as e:
+            print(f"Failed to delete message: {e}")
+    # -----------------------------------------------
+
     app = web.AppRunner(await web_server())
     await app.setup()
     bind_address = "0.0.0.0"
@@ -96,4 +107,3 @@ if __name__ == '__main__':
         loop.run_until_complete(start())
     except KeyboardInterrupt:
         logging.info('Service Stopped Bye 👋')
-
