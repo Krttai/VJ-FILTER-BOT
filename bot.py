@@ -106,8 +106,15 @@ async def start():
     await web.TCPSite(app, bind_address, PORT).start()
     await idle()
 
+
+# ✅ Fixed safe asyncio usage for Koyeb/Heroku
 if __name__ == '__main__':
     try:
-        asyncio.run(start())
+        loop = asyncio.get_event_loop()
+        loop.run_until_complete(start())
+    except RuntimeError:
+        new_loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(new_loop)
+        new_loop.run_until_complete(start())
     except (KeyboardInterrupt, SystemExit):
         logging.info('Service Stopped Bye 👋')
