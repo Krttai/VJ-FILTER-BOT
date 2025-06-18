@@ -31,8 +31,6 @@ from TechVJ.bot.clients import initialize_clients
 ppath = "plugins/*.py"
 files = glob.glob(ppath)
 TechVJBot.start()
-loop = asyncio.get_event_loop()
-
 
 async def start():
     print('\n')
@@ -108,9 +106,8 @@ async def start():
     await web.TCPSite(app, bind_address, PORT).start()
     await idle()
 
-
 if __name__ == '__main__':
     try:
-        loop.run_until_complete(start())
-    except KeyboardInterrupt:
+        asyncio.run(start())
+    except (KeyboardInterrupt, SystemExit):
         logging.info('Service Stopped Bye 👋')
