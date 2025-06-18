@@ -21,7 +21,6 @@ from typing import Union, Optional, AsyncGenerator
 from Script import script 
 from datetime import date, datetime 
 from aiohttp import web
-from plugins import web_server
 from plugins.clone import restart_bots
 
 from TechVJ.bot import TechVJBot
@@ -100,10 +99,16 @@ async def start():
             print(f"Failed to delete message: {e}")
     # -----------------------------------------------
 
-    app = web.AppRunner(await web_server())
-    await app.setup()
-    bind_address = "0.0.0.0"
-    await web.TCPSite(app, bind_address, PORT).start()
+    # ✅ Basic Uptime Web Route (fixes 404 on Koyeb/UptimeRobot)
+    async def homepage(request):
+        return web.Response(text="✅ TechVJ Bot is Alive", status=200)
+
+    app = web.Application()
+    app.router.add_get("/", homepage)
+    runner = web.AppRunner(app)
+    await runner.setup()
+    await web.TCPSite(runner, "0.0.0.0", PORT).start()
+
     await idle()
 
 
