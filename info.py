@@ -122,7 +122,7 @@ IMDB_TEMPLATE = environ.get("IMDB_TEMPLATE", script.IMDB_TEMPLATE_TXT)
 MAX_LIST_ELM = environ.get("MAX_LIST_ELM", None)
 
 # Filters
-LANGUAGES = ["malayalam", "mal", "tamil", "tam", "english", "eng", "hindi", "hin", "telugu", "tel", "kannada", "kan" "tulu" "tulu"]
+LANGUAGES = ["malayalam", "mal", "tamil", "tam", "english", "eng", "hindi", "hin", "telugu", "tel", "kannada", "kan", "tulu", "tulu"]
 SEASONS = [f"season {i}" for i in range(1, 11)]
 EPISODES = [f"E{i:02d}" for i in range(1, 41)]
 QUALITIES = ["360p", "480p", "720p", "1080p", "1440p", "2160p"]
