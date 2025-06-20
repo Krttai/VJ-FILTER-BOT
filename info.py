@@ -13,7 +13,7 @@ id_pattern = re.compile(r"^-?\d+$")
 SESSION = environ.get('SESSION', 'SKR')
 API_ID = int(environ.get('API_ID', '20196547'))
 API_HASH = environ.get('API_HASH', 'f1d32b4f43d2e1d50b863b1a77ddf2a2')
-BOT_TOKEN = environ.get('BOT_TOKEN', '')
+BOT_TOKEN = environ.get('BOT_TOKEN', '7148889388:AAFK-MlaDQ4oxaDl3CjJiN-iorZZHlKG384')
 
 # Admins & Users
 ADMINS = [int(admin) if id_pattern.search(admin) else admin for admin in environ.get('ADMINS', '1315244338').split()]
@@ -115,14 +115,14 @@ TUTORIAL = environ.get('TUTORIAL', '')
 CACHE_TIME = int(environ.get('CACHE_TIME', 1800))
 MAX_B_TN = environ.get("MAX_B_TN", "5")
 PORT = environ.get("PORT", "8080")
-MSG_ALRT = environ.get('MSG_ALRT', 'Hello My De Friends From SKR ❤️')
+MSG_ALRT = environ.get('MSG_ALRT', 'Hello From SKR ❤️')
 CUSTOM_FILE_CAPTION = environ.get("CUSTOM_FILE_CAPTION", script.CAPTION)
 BATCH_FILE_CAPTION = environ.get("BATCH_FILE_CAPTION", CUSTOM_FILE_CAPTION)
 IMDB_TEMPLATE = environ.get("IMDB_TEMPLATE", script.IMDB_TEMPLATE_TXT)
 MAX_LIST_ELM = environ.get("MAX_LIST_ELM", None)
 
 # Filters
-LANGUAGES = ["malayalam", "mal", "tamil", "tulu", "english", "eng", "hindi", "hin", "telugu", "tel", "kannada", "kan"]
+LANGUAGES = ["malayalam", "mal", "tamil", "tam", "english", "eng", "hindi", "hin", "telugu", "tel", "kannada", "kan" "tulu" "tulu"]
 SEASONS = [f"season {i}" for i in range(1, 11)]
 EPISODES = [f"E{i:02d}" for i in range(1, 41)]
 QUALITIES = ["360p", "480p", "720p", "1080p", "1440p", "2160p"]
